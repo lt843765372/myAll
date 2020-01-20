@@ -17,7 +17,7 @@
         // v-上面的模板标签-试图层
         // p-业务逻辑-控制层
 
-        function Page(){ //原型模型
+        function Page(){ //原型模型-设计模式
             this.cityData = []; 
         }
 
@@ -35,7 +35,7 @@
             }
         });
 
-        var page = new Page();
+        var page = new Page();//重新实例
 
         $(function(){
             page.init();

@@ -31,6 +31,9 @@
                    <option value="" disabled=disable>请选择</option>
                    <option value="11">111</option>
                    <option value="22">222</option>
+                   <!-- value必填 -->
+                   <!-- form标签中 使用v-model指令 监听元素内容的改变 用途一-->
+                   <!-- 组件中使用 用途二-->
                </select>
                <br>
                <textarea name="" id="" cols="30" rows="10" v-model='textareaValue'></textarea>
@@ -59,7 +62,7 @@
         var app = new Vue({ //全局注册 单页面应用，当前页面属性只能在当前页面访问
             el:'#list', //el含义： new 一个vue,让el元素来接管  this.$refs
             data: { //this.$data.appTxt 简写成 this.appTxt
-                appTxt: 'Hello World',
+                appTxt: 'Hello World', //data 对象中，键值对的存在，value不限类型
                 inputValue: '',
                 doingList: [],
                 selectOption:'',

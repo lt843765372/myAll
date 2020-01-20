@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="utf-8" />
-        <title>mvvm</title>
+        <title>todolist component</title>
         <style>
             .content {
                 margin: 50 auto;
@@ -27,17 +27,28 @@
            <div class="content">
                <div class='inputContent'>
                    <input type="text" placeholder="输入正在进行的课程" v-model='inputValue'>
+                   <select name="" id="select" v-model='selectOption' @change='selectChange'>
+                       <option value="" disabled=disable>请选择</option>
+                       <option value="11">111</option>
+                       <option value="22">222</option>
+                       <!-- value必填 -->
+                       <!-- form标签中 使用v-model指令 监听元素内容的改变 用途一-->
+                       <!-- 组件中使用 用途二-->
+                   </select>
+                   <br>
+                   <textarea name="" id="" cols="30" rows="10" v-model='textareaValue'></textarea>
                    <!-- input 的value 跟 实例中的data进行双向绑定 -->
-                    <!-- value变化， data就变化。data值变，页面value也变 -->
-                   <button v-on:click='submit'>提交</button>
+                   <!-- value变化， data就变化。data值变，页面value也变 -->
+                   <button @click='submit'>提交</button>
                    <!-- v-model用途 -->
-                   <!-- v-on:click 简写 @click -->
-                   <!-- v-on:change 简写 @change -->
+                   <!-- v-on:事件名  =>  @+事件名 -->
                 </div>
                <h3>正在进行的课程</h3>
                <div class="doingContent">
                    <ul>
-                       <li v-for="item in doingList">{{item}}</li>
+                       <!-- <li v-for="item in doingList">{{item}}</li> -->
+                       <!-- 模板中 doingList  不是this.doingList-->
+                       <todo-list :content="item" v-for="item in doingList"></todo-list>
                    </ul>
                </div>
                <h3>已经结束的课程</h3>
@@ -50,27 +61,35 @@
         <script type='text/javascript' src='vue.js'></script>
     
         <script>
-            // MVVM
-            // M-逻辑
-            // V-视图
-            // VM-连接视图跟模型的-双向绑定的核心
-
+            Vue.component('TodoList',{
+                props:['content'],
+                template:"<li>" + this.content + "<li>"
+            });
             var app = new Vue({ //全局注册 单页面应用，当前页面属性只能在当前页面访问
-                el:'#list', //el含义： new 一个vue,让el元素来接管   ref='tagRef'   this.$refs.tagRef
+                el:'#list', //el含义： new 一个vue,让el元素来接管  this.$refs
                 data: { //this.$data.appTxt 简写成 this.appTxt
-                    appTxt: 'Hello World',
+                    appTxt: 'Hello World', //data 对象中，键值对的存在，value不限类型
                     inputValue: '',
-                    doingList: []
+                    doingList: [],
+                    selectOption:'',
+                    textareaValue:''
                 },
                 methods:{//方法是个方法集
                     submit: function(){
                         // this.$data.doingList.push(this.$data.inputValue);//this.$data.inputValue 简写成 this.inputValue
                         this.doingList.push(this.inputValue);
                         this.inputValue = '';
+                        console.log(this.selectOption);
+                        console.log(this.textareaValue);
+    
+                    },
+                    selectChange: function(){
+                        this.selectOption = event.target.value;
                     }
                 }
             }).$mount('#list');//用途1.vue实例中没有el选项，用此来安装 
                                 // 用途2.挂载拓展属性
+    
         </script>
     
     </body>
