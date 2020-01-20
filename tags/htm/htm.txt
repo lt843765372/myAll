@@ -1,0 +1,42 @@
+<html></html>
+
+
+
+
+
+
+
+规范行为-1个html标签
+
+	特质：
+		浏览器会自动生成head、body标签;	
+		FireFox err:HTML 文档的字符编码未声明。如果该文件包含 US-ASCII 范围之外的字符，该文件将在某些浏览器配置中呈现为乱码。页面的字符编码必须在文档或传输协议层声明。
+
+
+	浏览器默认行为：
+
+		body元素:
+		
+							Margin(4边)				html-height
+				
+				Google		  8						page-height
+				
+				FireFox		  8							0
+				
+				IE			  8						page-height
+
+				
+				
+				
+				
+
+异常行为：
+		a.2个html标签， 浏览器解析成1个html
+		b.半个html标签，浏览器解析成1个html
+
+
+
+
+
+
+

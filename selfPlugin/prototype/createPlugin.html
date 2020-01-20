@@ -1,0 +1,34 @@
+<!Doctype>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>创建plugin</title>
+</head>
+<body>
+<h1>111111</h1>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+
+	(function($){		
+		$.fn.changeStyle = function(color){
+			this.css("color", color);
+			return this;
+		}
+		
+		$.fn.changeCss = function(obj){
+			var settingDefault = $.extend({"color": "black","fontSize":"24px"}, obj);
+			this.css({"color":obj.color,"fontSize":obj.fontSize})
+		}
+	})(jQuery);
+
+	$(function(){
+	
+		$("h1").changeStyle("red").css("fontSize","12px");
+		
+		$("h1").changeCss({"color":"yellow","fontSize": "20px"});
+		
+	});
+	//https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651222526&idx=1&sn=e192e6fd065b74f68e3c818819e05f3e&scene=38#wechat_redirect
+</script>
+</body>
+</html>

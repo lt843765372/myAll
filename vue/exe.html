@@ -1,0 +1,78 @@
+<docType>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>exe</title>
+        <style>
+            .content {
+                margin: 50 auto;
+                width: 500px;
+                height: 500px;
+                background-color: bisque;
+                padding: 20px;
+            }
+            input {
+                margin-right: 10px;
+            }
+            .inputContent {
+                overflow: hidden;
+            }
+            .doneContent p {
+                margin-left: 35px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="list">
+           <div class="content">
+               <div class='inputContent'>
+                   <input type="text" placeholder="输入正在进行的课程" v-model='inputValue'>
+                   <select name="" id="select" v-model='selectOption' @change='selectChange'>
+                       <option value="" disabled=disabled>请选择</option>
+                       <option value="11">111</option>
+                       <option value="22">222</option>
+                   </select>
+                   <button @click='submit'>提交</button>
+                </div>
+               <h3>正在进行的课程</h3>
+               <div class="doingContent">
+                   <ul>
+                       <li v-for="item in doingList">{{item}}</li>
+                   </ul>
+               </div>
+               <h3>已经结束的课程</h3>
+               <div class="doneContent">
+                   <p>111</p>
+               </div>
+           </div>
+        </div>
+    
+        <script type='text/javascript' src='vue.js'></script>
+    
+        <script>
+            var app = new Vue({ 
+                el:'#list', 
+                data: { 
+                    appTxt: 'Hello World',
+                    inputValue: '',
+                    doingList: [],
+                    selectOption:''
+                },
+                methods:{
+                    submit: function(){
+                    
+                        this.doingList.push(this.inputValue);
+                        this.inputValue = '';
+                        console.log(this.selectOption);
+                    },
+                    selectChange: function(){
+                        this.selectOption = event.target.value;
+                    }
+                }
+            }).$mount('#list');
+                              
+        </script>
+    
+    </body>
+    
+    </html>

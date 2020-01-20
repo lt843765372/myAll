@@ -1,0 +1,211 @@
+
+
+
+1.针对解决div内img有空隙？
+
+	解决：div height:0
+	分析：
+		字体大小、行高的关系-根本原因
+		font-size 应该等于 line-height。
+		
+		实际上，lineHeight 始终大于 fontSize。
+				lineHeight结构：
+					顶线
+					基线 0
+					底线 -250
+				unit per em： 1000
+				求基线到底线的距离（半间距） 250/1000 * fontSize
+				
+
+
+
+
+2.色值用16进制、rgb比较
+	解决：使用16进制
+	分析： rgb()是个计算函数，类似于calc();
+	
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+
+
+新内容记录-软知识  组件自己的样式库
+
+1.功能查询：
+	@support (属性: 属性值) {...css样式}	
+	@media screen and (max-width: 300px){ //堂兄弟媒体查询
+		body{
+			bgc: red;
+		}
+	}
+	
+	
+2.早期css:
+	window.margin.left = 2cm
+	font.family = times
+	h1.font.size = 24pt 20%
+	
+	
+	
+3.银行类软件pc、联通移动pc,应该是要兼容ie8及以下
+
+
+
+4.预处理器less sass stylus
+  预加载：
+	<link rel='preload' href='' as='font'>
+	对应着js,需要加个defer
+	
+	
+	
+5.提高页面加载速度：
+	css/js外联，层级最多不超过3层
+	雪碧图
+	减少dom操作
+	使用缓存CDN
+	首屏加载
+
+	
+	
+6.首屏加载-提高页面加载速度
+	方法一： 首屏css写在style标签中，其他页面样式外联写<script> loadCSS('non-critical.css'); </script>
+	方法二： 自动化工具 grunt-critical，Node.js 的第三方库
+			 全局安装 Grunt
+			 critical CSS
+			 线上环境：
+				唯一需要牢记的就是每次构建或修改 CSS 之后都要执行 Grunt 来处理 Critical CSS。
+			 弊端：
+				Critical CSS 的弊端在于内联样式是无法被浏览器缓存的。对于动态变化的页面，HTML 通常是不做缓存处理的，这也就是说内联在 HTML 中的 Critical CSS 会被反复下载。
+	
+	
+7.css样式表中最好这样写：
+	不使用!important
+	不使用 ID选择器，绑定到js的class,可以命名为jsClose,区分css/js
+	样式表中出现重复的css,使用OOCSS-面向对象的css
+	
+	
+	
+8.class命名规范：
+	BEM： block element modifier
+			icon--small
+			list--inline
+			heading-big
+		e.g.
+			.c-card.c-card@small-screen.c-card--is-active
+				.c-card_head
+					.c-card_title
+				.c-card_body
+					.c-card_img
+					.c-car_text
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+名词记录
+1.#id h3 > span，在这条匹配规则下，会生成一条符合搜索的索引树，从右往左检索
+
+
+2.样式级联：
+	继承和覆盖样式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

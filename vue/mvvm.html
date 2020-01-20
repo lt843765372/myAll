@@ -1,0 +1,76 @@
+<docType>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>mvvm</title>
+        <style>
+            .content {
+                margin: 50 auto;
+                width: 500px;
+                height: 500px;
+                background-color: bisque;
+                padding: 20px;
+            }
+            input {
+                margin-right: 10px;
+            }
+            .inputContent {
+                overflow: hidden;
+            }
+            .doneContent p {
+                margin-left: 35px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="list">
+           <div class="content">
+               <div class='inputContent'>
+                   <input type="text" placeholder="输入正在进行的课程" v-model='inputValue'>
+                   <!-- input 的value 跟 实例中的data进行双向绑定 -->
+                   <!-- value变化， data就变化。data值变，页面value也变 -->
+                   <button v-on:click='submit'>提交</button>
+                   <!-- v-model用途 -->
+                </div>
+               <h3>正在进行的课程</h3>
+               <div class="doingContent">
+                   <ul>
+                       <li v-for="item in doingList">{{item}}</li>
+                   </ul>
+               </div>
+               <h3>已经结束的课程</h3>
+               <div class="doneContent">
+                   <p>111</p>
+               </div>
+           </div>
+        </div>
+    
+        <script type='text/javascript' src='vue.js'></script>
+    
+        <script>
+            // MVVM
+            // M-逻辑
+            // V-视图
+            // VM-连接视图跟模型的
+
+            var app = new Vue({ //全局注册 单页面应用，当前页面属性只能在当前页面访问
+                el:'#list', //el含义： new 一个vue,让el元素来接管  this.$refs
+                data: { //this.$data.appTxt 简写成 this.appTxt
+                    appTxt: 'Hello World',
+                    inputValue: '',
+                    doingList: []
+                },
+                methods:{//方法是个方法集
+                    submit: function(){
+                        // this.$data.doingList.push(this.$data.inputValue);//this.$data.inputValue 简写成 this.inputValue
+                        this.doingList.push(this.inputValue);
+                        this.inputValue = '';
+                    }
+                }
+            }).$mount('#list');//用途1.vue实例中没有el选项，用此来安装 
+                                // 用途2.挂载拓展属性
+        </script>
+    
+    </body>
+    
+    </html>

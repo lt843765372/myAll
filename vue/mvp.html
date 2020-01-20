@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>mvp</title>
+</head>
+<body>
+    <input type="text" name="" id="inputValue">
+    <button id="submit">提交</button>
+    <div class="content"></div>
+
+    <script type='text/javascript' src='jquery-3.2.1.min.js'></script>
+    <script>
+
+        // MVP
+        // M-使用ajax请求数据
+        // v-上面的模板标签-试图层
+        // p-业务逻辑-控制层
+
+        function Page(){ //原型模型
+            this.cityData = []; 
+        }
+
+        $.extend(Page.prototype, {
+            init: function(){
+                this.bindEvent();
+            },
+            bindEvent: function(){
+                var $btn = $("#submit");
+                $btn.on("click", $.proxy(this.handleClick,this));
+            },
+            handleClick: function(){
+                $(".content").append("<p>"+ $('#inputValue').val() +"</p>");
+                $('#inputValue').val('');
+            }
+        });
+
+        var page = new Page();
+
+        $(function(){
+            page.init();
+        });
+
+    </script>
+
+</body>
+</html>

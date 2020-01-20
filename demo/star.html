@@ -1,0 +1,74 @@
+<!Doctype>
+<html>
+<head>
+	<title>评分</title>
+	<meta charset="utf-8" />
+	<style>
+		.sr-star{
+			 display: flex; 
+			 margin-bottom:50px;
+		}
+		.sr-star-item{
+			  width:18px;
+			  height:18px;
+			  background:url("./img/empty.png") no-repeat;
+			  background-size:18px 18px;
+			  margin-right:8px;
+			  cursor: pointer;
+		}
+		.str-star-item.active{
+			  background-image: url("./img/full.png");
+		}
+	</style>
+</head>
+<body>
+
+	<span class="star">
+			<b class="ct-star  ic-star-off"></b>
+			<b class="ct-star  ic-star-off"></b>
+			<b class="ct-star  ic-star-off"></b>
+			<b class="ct-star  ic-star-off"></b>
+			<b class="ct-star  ic-star-off"></b>
+	</span>
+	<span class="star-txt"></span>
+
+<script>
+    $(function () {
+
+        function SrScore(el) {
+            this.$el = $(el);
+            this.init();
+            this.$items = this.$el.find('.sr-star-item');
+        }
+
+        SrScore.prototype.init = function () {
+            var str = '';
+            for (var i = 0 ;i < 5; i++) {
+                str += '<div class="sr-star-item"></div>'
+            }
+            this.$el.append(str);
+            this.$bindEvent();
+        };
+        SrScore.prototype.$bindEvent = function () {
+            var that = this;
+            this.$el.on('click', '.sr-star-item', function () {
+                that.onScore($(this).index());
+            })
+        };
+        SrScore.prototype.onScore = function (n) {
+            this.$items.each(function (index) {
+                var $this = $(this);
+                if (index <= n) {
+                    $this.addClass('active');
+                } else {
+                    $this.removeClass('active');
+                }
+            })
+        };
+
+        window.SrStore = SrScore;
+})
+
+</script>
+</body>
+</html>

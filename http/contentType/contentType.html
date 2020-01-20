@@ -1,0 +1,76 @@
+<!Doctype>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>contentType</title>
+</head>
+<body>
+
+	后台报文-入参-格式要求为 	
+						代码中：
+						
+							POST-要求数据要以json字符串传时：
+							
+									dataType: 'json',
+									contentType: 'applicate/json;charset=utf-8',
+									data: JSON.stringify(data)
+									
+									network中：
+										request Headers：
+											content-type：'applicate/json;charset=utf-8' （消息主体按哪个方式进行编码-由后台定contentType）
+													对应着消息主体是
+											request payLoad： {key: value} 
+											
+											
+											
+							POST-要求数据要以form表单传时：
+									var data = "username="+ username +"&age=" + age
+									dataType: 'json'
+									contentType："applicate/x-www-form-urlencoded", (默认值)
+									data: data
+									
+									network中：
+										Form Data
+											username=liuting&age=20
+											
+											
+											
+							POST-要求数据要以form上传文件时：  //要让 form 的 enctype 等于 multipart/form-data 使用FormData 对象
+							
+									$a.on("click",function(){
+										var data = new FormData($form[0]);
+										data: data,
+										dataType: 'json'
+									});
+									
+									request Headers：
+										multipart/form-data;boundary=----Webkit...
+										
+									request payLoad：
+										boundary=----Webkit..
+											content-Disposition: form-data; name="username"
+									
+							
+							
+							
+							POST-要求数据要以text/xml时：
+									
+									var data="<user><name>"+user+"</name><pwd>"+pwd+"</pwd></user>";
+									dataTyepe: 'xml'
+									contentType："text/xml", 
+									data: data
+							
+							
+							
+							以上原生js的ajax都需要加contentType
+							
+							// https://www.cnblogs.com/itjeff/p/10240124.html
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+
+	
+	
+</script>
+</body>
+</html>
